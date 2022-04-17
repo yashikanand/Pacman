@@ -1,0 +1,27 @@
+/* Styling all the general tags */
+body {
+    margin: 0%;
+    padding: 0%;
+}
+
+/* Styling the header */
+.header {
+    background: black;
+    display: flex;
+    flex-direction: column;
+}
+
+.header > img {
+    width: 60vw;
+    height: 15em;
+    align-self: center;
+}
+
+#header-credit {
+    align-self: flex-end;
+    color: white;
+}
+
+.header > p > a {
+    color: white;
+}
