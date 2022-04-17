@@ -4,6 +4,12 @@
     <title>Pacman Game</title>
     <link rel="stylesheet" href="style.css" />
     <script src="script.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <header class="header">
@@ -22,15 +28,25 @@
       </p>
     </header>
     <div id="body">
+      <div id="keywords">
+        <h1>KEYWORDS</h1>
+        <p>PLACE X,Y,F</p>
+        <p>MOVE</p>
+        <p>LEFT</p>
+        <p>RIGHT</p>
+        <p>REPORT</p>
+      </div>
       <div id="user-interface">
+        <h1>Play Game</h1>
         <form>
-          <label
-            >Please enter your input here<input id="input" required />
-          </label>
+          <label>Please enter your input here</label>
+          <input id="input" required />
           <button type="button" id="input-submission">Submit</button>
         </form>
+        <p id="input-acceptance"></p>
         <div id="output">
-          <p>Output</p>
+          <h1>Output</h1>
+          <p id="output-received"></p>
         </div>
       </div>
     </div>

@@ -1,7 +1,17 @@
+html {
+    font-family: 'Press Start 2P';
+}
 /* Styling all the general tags */
 body {
     margin: 0%;
-    padding: 0%;
+    padding: 1%;
+    background-color: #000000;
+    font-size: 1vw;
+    
+}
+
+a:visited {
+    color: #060080;
 }
 
 /* Styling the header */
@@ -13,19 +23,85 @@ body {
 
 .header > img {
     width: 60vw;
-    height: 15em;
+    height: 25em;
     align-self: center;
 }
 
 #header-credit {
     align-self: flex-end;
-    color: white;
+    color: #808080;
+    font-size: 0.5em !important;
 }
 
-.header > p > a {
-    color: white;
+#header-credit > a {
+    color: #808080;
 }
 
-a:visited {
-    color: #0000ff;
+/* Styling for the body */
+#body {
+    display: flex;
+    justify-content: space-around;
+    padding: 3em;   
+}
+
+
+/* Styling for the user interface */
+#user-interface, #keywords {
+    border: solid #060080 2px;
+    border-radius: 3em;
+    padding: 3em;
+}
+
+#user-interface {
+    z-index: 2;
+    color: #ff2b29;
+}
+
+#output {
+    color: #feff00;
+    margin-top: 3em;
+}
+
+#keywords {
+    z-index: 1;
+    color: #ff9954;
+}
+
+#user-interface > form {    
+    display: flex;
+    flex-direction: column;
+}
+
+#input-submission{
+    font-family: 'Press Start 2P';
+    padding: 4px;
+    background: #ff2b29;
+    color: white;
+    border: #060080 solid 2px;
+    border-radius: 3em;
+    margin: 3px;
+}
+
+label, #input {
+    margin: 3px;
+}
+
+#input {
+    border: 0px solid;
+    border-radius: 3em;
+    height: 2em;
+    padding-left: 2em;
+    font-family: 'Press Start 2P';
+    text-align: center;
+    text-transform: uppercase;
+}
+/* Styling for the footer */
+footer {
+    display: flex;
+    justify-content: center;
+}
+
+footer > p, footer > p > a {
+    color: #FFFFFF;
+    font-size: 1.5vw;
 }
