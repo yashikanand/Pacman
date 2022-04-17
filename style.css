@@ -25,3 +25,7 @@ body {
 .header > p > a {
     color: white;
 }
+
+a:visited {
+    color: #0000ff;
+}
