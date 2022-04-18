@@ -1,8 +1,12 @@
+const directions = ["NORTH", "EAST", "SOUTH", "WEST"];
+
+/* Variables to store the location of the Pacman */
 var x;
 var y;
 var faceDirection;
+
+/* Variable to store user input in the form*/
 var input;
-const directions = ["NORTH", "EAST", "SOUTH", "WEST"];
 
 /* Function to store the input received from the form input field */
 function getInput() {
@@ -10,6 +14,7 @@ function getInput() {
   document.getElementById("input").value = "";
 }
 
+/* Function to check if the Pacman is placed. */
 function isPacmanValid() {
   if (x == undefined || y == undefined) {
     setInputAcceptanceVal("Input Ignored");
@@ -18,17 +23,21 @@ function isPacmanValid() {
   return true;
 }
 
+/* Function to check if the coordinates of Pacman are on grid. */
+function areCoordinatesValid(x, y) {
+  if (x >= 0 && x <= 5 && y >= 0 && y <= 5) {
+    return true;
+  }
+  return false;
+}
+
+/* Function to set the Pacman on the grid */
 function placePacman(location) {
   var coordinates = location.split(",");
-  if (
-    coordinates[0] >= 0 &&
-    coordinates[0] <= 5 &&
-    coordinates[1] >= 0 &&
-    coordinates[1] <= 5
-  ) {
-    x = parseInt(coordinates[0]);
-    y = parseInt(coordinates[1]);
+  if (areCoordinatesValid(coordinates[0], coordinates[1])) {
     if (directions.includes(coordinates[2])) {
+      x = parseInt(coordinates[0]);
+      y = parseInt(coordinates[1]);
       faceDirection = coordinates[2];
       setInputAcceptanceVal("Input Accepted");
     } else {
@@ -39,29 +48,64 @@ function placePacman(location) {
   }
 }
 
+/* Function to move the Pacman one step in the facing direction  */
 function movePacman() {
-  if (faceDirection == "NORTH" && y >= 0 && y < 5) {
-    y += 1;
-  } else if (faceDirection == "SOUTH" && y > 0 && y <= 5) {
-    y -= 1;
-  } else if (faceDirection == "EAST" && x >= 0 && x < 5) {
-    x += 1;
-  } else if (faceDirection == "WEST" && x > 0 && x <= 5) {
-    x -= 1;
+  if (isPacmanValid()) {
+    if (faceDirection == "NORTH" && areCoordinatesValid(x, y + 1)) {
+      y += 1;
+    } else if (faceDirection == "SOUTH" && areCoordinatesValid(x, y - 1)) {
+      y -= 1;
+    } else if (faceDirection == "EAST" && areCoordinatesValid(x + 1, y)) {
+      x += 1;
+    } else if (faceDirection == "WEST" && areCoordinatesValid(x - 1, y)) {
+      x -= 1;
+    } else {
+      setInputAcceptanceVal("Input Ignored");
+      return;
+    }
+    setInputAcceptanceVal("Input Accepted");
   } else {
     setInputAcceptanceVal("Input Ignored");
-    return;
   }
-  setInputAcceptanceVal("Input Accepted");
 }
 
+/* Function to change the direction of the Pacman facing */
 function changePacmanDirection(turn) {
+  var tempDirection;
   if (isPacmanValid()) {
-    /* TO DO */
-    setInputAcceptanceVal("Input Accepted");
+    if (turn == "LEFT") {
+      if (faceDirection == "NORTH") {
+        tempDirection = "WEST";
+      }
+      if (faceDirection == "WEST") {
+        tempDirection = "SOUTH";
+      }
+      if (faceDirection == "SOUTH") {
+        tempDirection = "EAST";
+      }
+      if (faceDirection == "EAST") {
+        tempDirection = "NORTH";
+      }
+    }
+    if (turn == "RIGHT") {
+      if (faceDirection == "NORTH") {
+        tempDirection = "EAST";
+      }
+      if (faceDirection == "WEST") {
+        tempDirection = "NORTH";
+      }
+      if (faceDirection == "SOUTH") {
+        tempDirection = "WEST";
+      }
+      if (faceDirection == "EAST") {
+        tempDirection = "SOUTH";
+      }
+    }
+    placePacman(x + "," + y + "," + tempDirection);
   }
 }
 
+/* Function to give the output of the location of the Pacman. */
 function reportPacman() {
   if (isPacmanValid()) {
     var output = x + "," + y + "," + faceDirection;
